@@ -15,33 +15,64 @@ generateBtn.addEventListener("click", writePassword);
 
 */
 
+var lowercase = confirm('Would you like to include lowercase characters?');
+var uppercase = confirm('Would you like to include uppercase characters?');
+var numeric = confirm('Would you like to include numeric characters?');
+var special = confirm('Would you like to include special characters?');
+// parseInt converts string input into an Integer
+var length = parseInt(prompt('How long do you want your password to be?'));
 
-var lowercase = 'abcdefghijklmnopqrstuvwxyz';
-var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var numbers = '0123456789';
-var specials = '!@#$%^&*()_+{}:\"<>?\\|[];\',./`~';
-var all = specials + lowercase + uppercase + numbers;
-var range = 8;
-
-function generatePassword(range) {
+if (lowercase || uppercase || numeric || special) {
+  // At least one option is selected
+  var all = '';
+  if (lowercase) {
+    all += 'abcdefghijklmnopqrstuvwxyz';
+    console.log(all);
+  }
+  if (uppercase) {
+    all += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    console.log(all);
+  }
+  if (numeric) {
+    all += '0123456789';
+    console.log(all);
+  }
+  if (special) {
+    all += '!@#$%^&*()_+{}:\"<>?\\|[];\',./`~';
+    console.log(all);
+  }
   var password = '';
-  password += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
-  password += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
-  password += numbers.charAt(Math.floor(Math.random() * numbers.length));
-  password += specials.charAt(Math.floor(Math.random() * specials.length));
-  for (var i = 0; i < range - 4; i++) {
+  for (var i = 0; i < length; i++) {
+    // charAt returns the character at the specified index of the string 
     password += all.charAt(Math.floor(Math.random() * all.length));
   }
-  return password;
+  console.log('Your password is:', password);
+} else {
+  // No option is selected
+  console.log('User did not select any option.');
 }
-
-console.log(generatePassword(range));
 
 var generateBtn = document.querySelector("#generate");
 var passwordText = document.querySelector("#password");
 
-generateBtn.addEventListener("click", function() {
-  var password = generatePassword(range);
-  passwordText.value = password;
 
+generateBtn.addEventListener("click", function(event) {
+  passwordText.value = password;
+  
+  //no option selected
+  if (!password) {
+    alert("No options selected. Please refresh page to try again.");
+    
+    //Trying to replace textarea placeholder text from displaying undefined, needs fixed
+    passwordText.removeAttribute("readonly");
+    passwordText.setAttribute("placeholder", "Refresh page to try again.");
+
+    console.log(passwordText);
+    //same as previous comment, this gives a way to backspace and see refresh message, needs fixed
+    passwordText.addEventListener("input", function() {
+      if (!password) {
+        passwordText.value = "";
+      }
+    } );
+  };  
 });
