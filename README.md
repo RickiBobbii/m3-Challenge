@@ -27,3 +27,22 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
+
+## Acknowledgment
+
+The charAt password generator on line 47 made possible with help from Bing AI chat.
+
+## Visuals
+
+![Screenshoot of webpage][def]
+
+## Github Link
+
+[Module-Three Challenge Link](https://rickibobbii.github.io/m3-Challenge/)
+
+
+## License
+
+MIT License
+
+[def]: ./assets/images/m3screenshot.png
