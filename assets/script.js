@@ -52,7 +52,12 @@ generateBtn.addEventListener("click", function(event) {
       alert("No options selected. Please click button to try again.");
       passwordText.setAttribute("placeholder", "Click button to try again.");
       console.log(password);
+      all = '';
+      console.log("All variable is " + all);
     };  
     //Displays password in text area
     passwordText.value = password;
+    console.log("All if all criteria meet " + all);
+    all = '';
+    console.log("All set to empty after password displayed" + all);
 });
